@@ -30,7 +30,7 @@ client.on('qr', qr => {
 });
 
 client.on('ready', () => {
-    console.log('客户端已就绪！');
+    console.log('Client Ready~');
     let lastMessage;
 
     client.on('message', message => {
