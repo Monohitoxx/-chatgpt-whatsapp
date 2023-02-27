@@ -4,9 +4,11 @@ The server and api is using @[xx025](https://github.com/xx025)/**[browser-chatgp
 
 # How to use
 
-git clone https://github.com/Monohitoxx/chatgpt-whatsapp.git
-git clone https://github.com/xx025/browser-chatgptapi/tree/base0.1_one_to_one
-Run terminal  and run command as below table :
+    git clone https://github.com/Monohitoxx/chatgpt-whatsapp.git
+
+    git clone https://github.com/xx025/browser-chatgptapi/tree/base0.1_one_to_one
+
+Run terminal and run command as below table :
 
     npm install ws
     npm install whatsapp-web.js
