@@ -38,7 +38,7 @@ client.on('ready', () => {
       lastMessage = message;
     });
 
-    // 监听来自 WebSocket 的消息
+    // Listening message from WebSocket 
     ws.on('message', function message(data) {
       let response = JSON.parse(data);
       console.log('', response.msg);
