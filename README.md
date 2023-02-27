@@ -20,7 +20,8 @@ Or Edge.
 Import [ChatGptPagesScripts.js](https://github.com/xx025/browser-chatgptapi/blob/base0.1_one_to_one/ChatGptPagesScripts.js)  to your **Tampermonkey**
 
 Run your chrome and go to [ChatGPT](https://chat.openai.com/)
-Run terminal  and run command as below :
+
+Run terminal and run command as below :
 
     node main.js
 Scan your QR Code from terminal window
