@@ -1,9 +1,10 @@
 import WebSocket from 'ws';
 import readline from 'readline';
-import { Client  } from 'whatsapp-web.js';
+import pkg from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
 
-const ws = new WebSocket("ws://127.0.0.1:8010/user/user1");
+const ws = new WebSocket("ws://127.0.0.1:8010/user/user1"); // Listening Websocket server
+const { Client, LocalAuth } = pkg;
 
 ws.on('error', console.error);
 
@@ -22,19 +23,26 @@ function sendRequest() {
   });
 }
 
-const client = new Client();
+// Save whatsapp session to .wwebjs_auth directory
+const client = new Client({
+  authStrategy: new LocalAuth()
+});
 
 
+// QR code generation
 client.on('qr', qr => {
   qrcode.generate(qr, {small: true});
 });
 
+
+// Prompt successful to console when connected
 client.on('ready', () => {
     console.log('Client Ready~');
     let lastMessage;
 
+  // Send JSON message to websocket server 
     client.on('message', message => {
-      ws.send(JSON.stringify({msg: message.body}));
+      ws.send(JSON.stringify({msg: message.body})); 
       lastMessage = message;
     });
 
@@ -48,6 +56,7 @@ client.on('ready', () => {
         client.sendMessage(lastMessage.from, response.msg);
     }
     
+    //Initialzation 
       sendRequest();
     });
     
