@@ -65,4 +65,3 @@ client.on('ready', () => {
 });
 
 client.initialize();
-client.initialize();
