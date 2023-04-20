@@ -37,20 +37,22 @@ client.on('qr', qr => {
 
 // Prompt successful to console when connected
 client.on('ready', () => {
-    console.log('Client Ready~');
-    let lastMessage;
+    console.log('Client Ready');
+    const messageMap = new Map();
 
   // Send JSON message to websocket server 
     client.on('message', message => {
-      ws.send(JSON.stringify({msg: message.body})); 
-      lastMessage = message;
-    });
+    ws.send(JSON.stringify({msg: message.body, from: message.from}));
+    messageMap.set(message.from, message);
+  });
 
     // Listening message from WebSocket 
     ws.on('message', function message(data) {
       let response = JSON.parse(data);
       console.log('', response.msg);
     
+    const lastMessage = messageMap.get(response.from);
+      
     // Send a reply to the sender of the last received WhatsApp message
     if (lastMessage && lastMessage.from) {
         client.sendMessage(lastMessage.from, response.msg);
@@ -62,4 +64,5 @@ client.on('ready', () => {
     
 });
 
+client.initialize();
 client.initialize();
